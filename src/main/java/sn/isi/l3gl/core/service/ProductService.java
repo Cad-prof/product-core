@@ -17,27 +17,26 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    // v0.1.0 
+    //  v0.1.0 
     public List<Product> listProducts() {
         return productRepository.findAll();
     }
 
-    // v0.2.0 
-    /**
-     * Met à jour la quantité en stock d'un produit.
-     * @paramidL'identifiant du produit
-     * @paramquantityLa nouvelle quantité
-     * @return Le produit mis à jour
-     */
+    //  v0.2.0 
     public Product updateQuantity(Long id, Integer quantity) {
-        // 1. Chercher le produit par son ID (ou lancer une erreur s'il n'existe pas)
         Product product = productRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Produit introuvable avec l'id : " + id));
-
-        // 2. Modifier la quantité
         product.setQuantity(quantity);
-
-        // 3. Sauvegarder et retourner le produit modifié
         return productRepository.save(product);
+    }
+
+    // v0.3.0 
+    /**
+     * Compte les produits dont la quantité est inférieure ou égale à 5.
+     * Ces produits sont considérés en "stock faible".
+     * @return Le nombre de produits en stock faible
+     */
+    public long countLowStockProducts() {
+        return productRepository.countByQuantityLessThanEqual(5);
     }
 }
