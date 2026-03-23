@@ -12,7 +12,7 @@
 
     <groupId>sn.isi.l3gl.core</groupId>
     <artifactId>product-core</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.3.0</version>
     <name>product-core</name>
     <description>Ce module contient la logique métier (entités, repository, service).</description>
     <url/>
@@ -83,6 +83,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+					<skip>true</skip>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
